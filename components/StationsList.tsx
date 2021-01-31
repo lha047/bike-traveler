@@ -7,14 +7,15 @@ import {
   HEADING_AVAILABLE_LOCKS,
   HEADING_ADRESS,
 } from '../shared/constants';
+import styles from '../styles/StationList.module.scss';
 
 interface StationsListProps {
   stations: AllInfoStation[];
 }
 export const StationsList = ({ stations }: StationsListProps): JSX.Element => {
   return (
-    <table>
-      <thead>
+    <table className={styles.table}>
+      <thead className={styles.heading}>
         <tr>
           <td>{HEADING_STATIONS}</td>
           <td>{HEADING_ADRESS}</td>
@@ -23,7 +24,7 @@ export const StationsList = ({ stations }: StationsListProps): JSX.Element => {
           <td>{HEADING_AVAILABLE_LOCKS}</td>
         </tr>
       </thead>
-      <tbody>
+      <tbody className={styles.tbody}>
         {stations.map((station) => {
           return <StationItem key={station.station_id} station={station} />;
         })}

@@ -1,0 +1,24 @@
+.table {
+    border: none;
+    border-collapse:collapse;
+    .heading {
+        font-size: 1.3rem;
+        border-bottom: 2px solid black;
+    }
+    .tbody {
+        tr {
+            td {
+                padding: 1rem;
+            }
+            &:hover {
+                background-color: #AEAEAE;
+            }
+            &:nth-child(odd) {
+                    background-color: #E6E6E6;
+                    &:hover {
+                        background-color: #AEAEAE;
+                    }       
+            }
+        }
+    }
+}
