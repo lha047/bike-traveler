@@ -2,7 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: Oslo Sans, Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
@@ -12,4 +12,11 @@ a {
 
 * {
   box-sizing: border-box;
+}
+@font-face {
+  font-family: "Oslo Sans";
+  src: url("/fonts/OsloSans/OsloSans-Regular.woff") format("woff"), url("/fonts/OsloSans/OsloSans-Medium.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
 }
