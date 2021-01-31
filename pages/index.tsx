@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.scss';
 import { GetServerSidePropsResult } from 'next';
 import { StationsSection } from '../components/StationsSection';
 import { Nullable } from '../shared/utils/helperTypes';
-import { BYSYKKEL_OPEN_API_URL, options } from '../shared/fetchHelpers';
+import { options } from '../shared/fetchHelpers';
 
 interface HomeProps {
   stations: Nullable<StationResponse>;
