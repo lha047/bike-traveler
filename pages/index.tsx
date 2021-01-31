@@ -8,6 +8,7 @@ import { mapStationAndStatus } from '../shared/utils/utils';
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.scss';
+import { GetServerSidePropsResult } from 'next';
 
 interface HomeProps {
   stations: Station[];
@@ -64,7 +65,9 @@ export default function Home({ stations, statuses }: HomeProps): JSX.Element {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(): Promise<
+  GetServerSidePropsResult<HomeProps>
+> {
   const stationRes = await fetch(`${process.env.API_STATION}`, options);
   const stationData: StationResponse = await stationRes.json();
   const statusRes = await fetch(`${process.env.API_STATION_STATUS}`, options);

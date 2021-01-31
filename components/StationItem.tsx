@@ -11,7 +11,7 @@ export const StationItem = ({
     num_bikes_available,
     num_docks_available,
   },
-}: StationProps) => {
+}: StationProps): JSX.Element => {
   return (
     <tr>
       <td>{name}</td>

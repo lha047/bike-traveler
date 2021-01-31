@@ -11,7 +11,7 @@ import {
 interface StationsListProps {
   stations: AllInfoStation[];
 }
-export const StationsList = ({ stations }: StationsListProps) => {
+export const StationsList = ({ stations }: StationsListProps): JSX.Element => {
   return (
     <table>
       <thead>
