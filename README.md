@@ -1,8 +1,15 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+Install dependencies:
+```bash
+npm i
+# or
+yarn 
+```
 
-First, run the development server:
+Run the development server:
+- Add you CLIENT_IDENTIFIER to the .env file according to [Oslo Bysykkel open api](https://oslobysykkel.no/apne-data/sanntid)
 
 ```bash
 npm run dev
