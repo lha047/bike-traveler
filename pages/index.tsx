@@ -21,7 +21,7 @@ export default function Home({ stations, statuses }: HomeProps): JSX.Element {
           content="Dette er en tjeneste basert på Oslo Bysykkel sine sanntidsdata."
         />
       </Head>
-      <h1 className={styles.title}>Velkomment til Bike Traveler</h1>
+      <h1 className={styles.title}>Velkommen til Bike Traveler</h1>
       <p className={styles.description}>
         Dette er en tjeneste basert på Oslo Bysykkel sine sanntidsdata.
       </p>
