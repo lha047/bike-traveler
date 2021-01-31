@@ -23,15 +23,11 @@ export default function Home({ stations, statuses }: HomeProps): JSX.Element {
       </Head>
       <h1 className={styles.title}>Velkommen til Bike Traveler</h1>
       <p className={styles.description}>
-        Dette er en tjeneste basert på Oslo Bysykkel sine sanntidsdata.
+        Tjenesten er basert på Oslo Bysykkel sine sanntidsdata.
       </p>
-      <p>
-        Finn ut mer på{' '}
-        <a href={BYSYKKEL_OPEN_API_URL} target="_blank" rel="noreferrer">
-          Oslo Bysykkel sine åpne data sider
-        </a>
-      </p>
-
+      <a href={BYSYKKEL_OPEN_API_URL} target="_blank" rel="noreferrer">
+        Les mer hos Oslo Bysykkel
+      </a>
       <StationsSection stations={stations} statuses={statuses} />
     </div>
   );
