@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src --ext .ts,.tsx",
+    "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
@@ -18,7 +18,7 @@
     "react-query": "^3.6.0"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": "npm run lint:fix"
+    "**/*.{ts,tsx}": "npm run lint:fix"
   },
   "husky": {
     "hooks": {
