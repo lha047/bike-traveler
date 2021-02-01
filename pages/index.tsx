@@ -6,6 +6,7 @@ import { GetServerSidePropsResult } from 'next';
 import { StationsSection } from '../components/StationsSection';
 import { Nullable } from '../shared/utils/helperTypes';
 import { options } from '../shared/fetchHelpers';
+import { MAIN_HEADING } from '../shared/constants';
 
 interface HomeProps {
   stations: Nullable<StationResponse>;
@@ -15,13 +16,13 @@ export default function Home({ stations, statuses }: HomeProps): JSX.Element {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Bike Traveler</title>
+        <title>{MAIN_HEADING}</title>
         <meta
           name="description"
           content="Dette er en tjeneste basert på Oslo Bysykkel sine sanntidsdata."
         />
       </Head>
-      <h1 className={styles.title}>Bike Traveler</h1>
+      <h1 className={styles.title}>{MAIN_HEADING}</h1>
       <StationsSection stations={stations} statuses={statuses} />
     </div>
   );
