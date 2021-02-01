@@ -2,9 +2,9 @@ import { StationStatusResponse } from './model/StationStatus';
 import { StationResponse } from './model/Station';
 export const BYSYKKEL_OPEN_API_URL: Readonly<string> =
   'https://oslobysykkel.no/apne-data/sanntid';
-const API_STATIONS_URL: Readonly<string> =
+export const API_STATIONS_URL: Readonly<string> =
   'https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json';
-const API_STATUS_URL: Readonly<string> =
+export const API_STATUS_URL: Readonly<string> =
   'https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json';
 
 export const options = {
