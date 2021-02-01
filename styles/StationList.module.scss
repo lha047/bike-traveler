@@ -1,9 +1,16 @@
 .table {
     border: none;
     border-collapse:collapse;
+    width: 85%;
     .heading {
         font-size: 1.3rem;
         border-bottom: 2px solid black;
+        th {
+            text-align: left;
+            &:first-child {
+                width: 15rem;
+            }
+        }
     }
     .tbody {
         tr {
