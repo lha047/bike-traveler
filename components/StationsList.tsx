@@ -1,11 +1,4 @@
 import { AllInfoStation } from '../shared/model/Station';
-import {
-  HEADING_STATIONS,
-  HEADING_CAPACITY,
-  HEADING_AVAILABLE_BIKES,
-  HEADING_AVAILABLE_LOCKS,
-  HEADING_ADRESS,
-} from '../shared/constants';
 import styles from '../styles/StationList.module.scss';
 import { useMemo } from 'react';
 import {
@@ -19,20 +12,18 @@ import { Search } from './Search';
 
 interface StationsListProps {
   stations: AllInfoStation[];
+  columns: Column<AllInfoStation>[];
 }
-export const StationsList = ({ stations }: StationsListProps): JSX.Element => {
+export const StationsList = ({
+  stations,
+  columns,
+}: StationsListProps): JSX.Element => {
   const data = useMemo(() => stations, [stations]);
-  const columns = useMemo((): Column<AllInfoStation>[] => {
-    return [
-      { accessor: 'name', Header: HEADING_STATIONS },
-      { accessor: 'address', Header: HEADING_ADRESS },
-      { accessor: 'capacity', Header: HEADING_CAPACITY },
-      { accessor: 'num_bikes_available', Header: HEADING_AVAILABLE_BIKES },
-      { accessor: 'num_docks_available', Header: HEADING_AVAILABLE_LOCKS },
-    ];
-  }, []);
+  const cols = useMemo((): Column<AllInfoStation>[] => {
+    return columns;
+  }, [columns]);
   const tableInstance = useTable<AllInfoStation>(
-    { columns, data },
+    { columns: cols, data },
     useGlobalFilter
   );
   const {
