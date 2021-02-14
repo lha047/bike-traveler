@@ -5,7 +5,7 @@ import { Nullable } from '../shared/utils/helperTypes';
 
 export const useStatuses = (
   statuses: Nullable<StationStatusResponse>
-): UseQueryResult => {
+): UseQueryResult<StationStatusResponse, Error> => {
   return useQuery<StationStatusResponse, Error>('status', getStatuses, {
     ...(statuses && { initialData: statuses }),
     enabled: !statuses,

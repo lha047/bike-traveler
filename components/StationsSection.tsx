@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { StationResponse } from '../shared/model/Station';
 import { mapStationAndStatus, unixToMs } from '../shared/utils/utils';
 import { StationStatusResponse } from '../shared/model/StationStatus';
-import { useQuery } from 'react-query';
-import { getStatuses, getStations } from '../shared/fetchHelpers';
 import { format } from 'date-fns';
 import { StationsList } from './StationsList';
 import { Nullable } from '../shared/utils/helperTypes';
 import { DATE_TIME_FORMAT } from '../shared/constants';
 import { stationsTableCols } from './StationsTableCols';
-import { useStatuses } from './hooks/useStatuses';
+import { useStatuses } from '../hooks/useStatuses';
 import { useStations } from '../hooks/useStations';
 
 interface StationSectionProps {
