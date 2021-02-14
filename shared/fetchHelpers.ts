@@ -6,6 +6,8 @@ export const API_STATIONS_URL: Readonly<string> =
   'https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json';
 export const API_STATUS_URL: Readonly<string> =
   'https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json';
+export const googleMapUrl = (key: string): string =>
+  `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places&language=no&region=NO&v=quarterly`;
 
 export const options = {
   headers: {
