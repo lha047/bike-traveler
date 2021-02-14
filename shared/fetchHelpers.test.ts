@@ -20,6 +20,7 @@ describe('fetchHelpers', () => {
     expect(global.fetch).toHaveBeenCalledWith(API_STATUS_URL, options);
     expect(res.data.stations).toBeDefined();
   });
+
   test('getStations', async () => {
     const mockRes = { data: { stations: [] } };
     global.fetch.mockResolvedValue(
