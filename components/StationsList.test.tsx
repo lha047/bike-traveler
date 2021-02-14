@@ -1,7 +1,7 @@
 import { StationsList } from './StationsList';
 import { allInfoMock } from '../tests/mockResponse';
 import { render } from '../tests/testUtils';
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import {
   HEADING_STATIONS,
   HEADING_ADRESS,
@@ -10,12 +10,15 @@ import {
   HEADING_CAPACITY,
 } from '../shared/constants';
 import { stationsTableCols } from './StationsTableCols';
+import { SEARCH_LABEL } from './Search';
 describe('StationsList', () => {
-  test('Renders', () => {
-    const mockStations = allInfoMock;
+  const mockStations = allInfoMock;
+  beforeEach(() => {
     render(
       <StationsList stations={mockStations} columns={stationsTableCols()} />
     );
+  });
+  test('Renders content', () => {
     expect(screen.getByText(HEADING_STATIONS)).toBeInTheDocument();
     expect(screen.getByText(HEADING_ADRESS)).toBeInTheDocument();
     expect(screen.getByText(HEADING_AVAILABLE_BIKES)).toBeInTheDocument();
@@ -27,6 +30,13 @@ describe('StationsList', () => {
   });
 
   test('Interacts with search', () => {
-    expect(true).toEqual(true);
+    const search = screen.getByLabelText(SEARCH_LABEL);
+    expect(search).toBeInTheDocument();
+    fireEvent.change(search, { target: { value: 'Sesam' } });
+    expect(screen.getByText('Sesam station')).toBeInTheDocument();
+    expect(screen.queryByText('Test station')).not.toBeInTheDocument();
+    fireEvent.change(search, { target: { value: '' } });
+    expect(screen.getByText('Sesam station')).toBeInTheDocument();
+    expect(screen.getByText('test station')).toBeInTheDocument();
   });
 });
