@@ -9,7 +9,8 @@ import { DATE_TIME_FORMAT } from '../shared/constants';
 import { stationsTableCols } from './StationsTableCols';
 import { useStatuses } from '../hooks/useStatuses';
 import { useStations } from '../hooks/useStations';
-
+export const LOADING_TEXT: Readonly<string> =
+  'Laster inn stasjonsinformasjon...';
 interface StationSectionProps {
   stations: Nullable<StationResponse>;
   statuses: Nullable<StationStatusResponse>;
@@ -48,7 +49,7 @@ export const StationsSection = ({
     statusRes ? statusRes.data?.stations : null
   );
   if (isLoadingStations || isLoadingStatus) {
-    return <i>Laster inn stasjonsinformasjon...</i>;
+    return <i>{LOADING_TEXT}</i>;
   }
   if (isStationError || isStatusError) {
     return <i>Fant ikke stasjonsinformasjon. Vennligst prøve igjen senere.</i>;

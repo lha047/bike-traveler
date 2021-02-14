@@ -31,5 +31,4 @@ export const statusesResponse: StationStatusResponse = {
 };
 export const statuses = statusesResponse.data.stations;
 export const stations = stationsResponse.data.stations;
-
 export const allInfoMock = mapStationAndStatus(stations, statuses);
