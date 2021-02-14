@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { StationResponse } from '../shared/model/Station';
 import { mapStationAndStatus, unixToMs } from '../shared/utils/utils';
 import { StationStatusResponse } from '../shared/model/StationStatus';
-import { useQuery } from 'react-query';
-import { getStatuses, getStations } from '../shared/fetchHelpers';
 import { format } from 'date-fns';
 import { StationsList } from './StationsList';
 import { Nullable } from '../shared/utils/helperTypes';
 import { DATE_TIME_FORMAT } from '../shared/constants';
-
+import { stationsTableCols } from './StationsTableCols';
+import { useStatuses } from '../hooks/useStatuses';
+import { useStations } from '../hooks/useStations';
+export const LOADING_TEXT: Readonly<string> =
+  'Laster inn stasjonsinformasjon...';
 interface StationSectionProps {
   stations: Nullable<StationResponse>;
   statuses: Nullable<StationStatusResponse>;
@@ -18,23 +20,19 @@ export const StationsSection = ({
   statuses,
 }: StationSectionProps): JSX.Element => {
   const [lastUpdated, setLastUpdated] = useState('');
+  const columns = stationsTableCols();
   const {
     data: statusRes,
     isLoading: isLoadingStatus,
     isError: isStatusError,
-  } = useQuery<StationStatusResponse, Error>('status', getStatuses, {
-    ...(statuses && { initialData: statuses }),
-    enabled: !statuses,
-  });
+  } = useStatuses(statuses);
 
   const {
     data: stationsRes,
     isLoading: isLoadingStations,
     isError: isStationError,
-  } = useQuery<StationResponse, Error>('stations', getStations, {
-    ...(stations && { initialData: stations }),
-    enabled: !statuses,
-  });
+  } = useStations(stations);
+
   useEffect(() => {
     if (statusRes && statusRes.last_updated) {
       setLastUpdated(
@@ -51,7 +49,7 @@ export const StationsSection = ({
     statusRes ? statusRes.data?.stations : null
   );
   if (isLoadingStations || isLoadingStatus) {
-    return <i>Laster inn stasjonsinformasjon...</i>;
+    return <i>{LOADING_TEXT}</i>;
   }
   if (isStationError || isStatusError) {
     return <i>Fant ikke stasjonsinformasjon. Vennligst prøve igjen senere.</i>;
@@ -69,7 +67,7 @@ export const StationsSection = ({
   return (
     <>
       <p>Sist oppdatert: {renderUpdatedInfo(statusRes)}</p>
-      <StationsList stations={allInfo} />
+      <StationsList stations={allInfo} columns={columns} />
     </>
   );
 };
