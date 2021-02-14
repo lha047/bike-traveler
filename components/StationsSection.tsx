@@ -8,6 +8,9 @@ import { format } from 'date-fns';
 import { StationsList } from './StationsList';
 import { Nullable } from '../shared/utils/helperTypes';
 import { DATE_TIME_FORMAT } from '../shared/constants';
+import { stationsTableCols } from './StationsTableCols';
+import { useStatuses } from './hooks/useStatuses';
+import { useStations } from '../hooks/useStations';
 
 interface StationSectionProps {
   stations: Nullable<StationResponse>;
@@ -18,23 +21,19 @@ export const StationsSection = ({
   statuses,
 }: StationSectionProps): JSX.Element => {
   const [lastUpdated, setLastUpdated] = useState('');
+  const columns = stationsTableCols();
   const {
     data: statusRes,
     isLoading: isLoadingStatus,
     isError: isStatusError,
-  } = useQuery<StationStatusResponse, Error>('status', getStatuses, {
-    ...(statuses && { initialData: statuses }),
-    enabled: !statuses,
-  });
+  } = useStatuses(statuses);
 
   const {
     data: stationsRes,
     isLoading: isLoadingStations,
     isError: isStationError,
-  } = useQuery<StationResponse, Error>('stations', getStations, {
-    ...(stations && { initialData: stations }),
-    enabled: !statuses,
-  });
+  } = useStations(stations);
+
   useEffect(() => {
     if (statusRes && statusRes.last_updated) {
       setLastUpdated(
@@ -69,7 +68,7 @@ export const StationsSection = ({
   return (
     <>
       <p>Sist oppdatert: {renderUpdatedInfo(statusRes)}</p>
-      <StationsList stations={allInfo} />
+      <StationsList stations={allInfo} columns={columns} />
     </>
   );
 };
