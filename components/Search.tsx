@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, FilterValue } from 'react-table';
 import style from '../styles/Search.module.scss';
 import { AllInfoStation } from '../shared/model/Station';
-
+export const SEARCH_LABEL: Readonly<string> = 'Søk';
 interface SearchProps {
   preGlobalFilteredRows: Row<AllInfoStation>[];
   globalFilter: string;
@@ -16,21 +16,24 @@ export const Search = ({
   const count = preGlobalFilteredRows.length;
   const [value, setValue] = React.useState(globalFilter);
   const onChange = (value: string) => {
+    setValue(value);
     setGlobalFilter(value || undefined);
   };
+
   return (
-    <span>
-      Søk:{' '}
+    <>
+      <label htmlFor={'search'}>{SEARCH_LABEL}</label>
       <input
         type="search"
+        id={'search'}
+        name={'search'}
         value={value || ''}
         onChange={(e) => {
-          setValue(e.target.value);
           onChange(e.target.value);
         }}
         placeholder={`${count} stasjoner...`}
         className={style.search}
       />
-    </span>
+    </>
   );
 };
