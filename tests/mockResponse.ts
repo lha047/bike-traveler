@@ -1,3 +1,4 @@
+import { mapStationAndStatus } from './../shared/utils/utils';
 import { StationStatusResponse } from '../shared/model/StationStatus';
 import { StationResponse } from '../shared/model/Station';
 
@@ -30,3 +31,5 @@ export const statusesResponse: StationStatusResponse = {
 };
 export const statuses = statusesResponse.data.stations;
 export const stations = stationsResponse.data.stations;
+
+export const allInfoMock = mapStationAndStatus(stations, statuses);
