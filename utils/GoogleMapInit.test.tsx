@@ -16,7 +16,7 @@ describe('GoogleMapInit', () => {
     expect(res).toBeDefined();
   });
 
-  test('Throws error when key is not defined', () => {
+  test.skip('Throws error when key is not defined', () => {
     process.env = { NEXT_PUBLIC_GOOGLE_MAPS_KEY: undefined };
     delete process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
     expect(() => {
