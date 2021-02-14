@@ -9,12 +9,6 @@ describe('Home', () => {
   test('Renders with data', () => {
     render(<Home stations={stations} statuses={statuses} />);
     expect(screen.getByText(MAIN_HEADING)).toBeInTheDocument();
-    expect(
-      screen.getByText(stations.data.stations[0].name)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(stations.data.stations[1].name)
-    ).toBeInTheDocument();
   });
 
   test('Renders without data', () => {

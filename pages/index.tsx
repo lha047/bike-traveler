@@ -3,16 +3,31 @@ import { StationResponse } from '../shared/model/Station';
 import { StationStatusResponse } from '../shared/model/StationStatus';
 import styles from '../styles/Home.module.scss';
 import { GetServerSidePropsResult } from 'next';
-import { StationsSection } from '../components/StationsSection';
 import { Nullable } from '../shared/utils/helperTypes';
 import { options } from '../shared/fetchHelpers';
 import { MAIN_HEADING } from '../shared/constants';
+import { useState, useEffect } from 'react';
+import { loadMap } from '../utils/GoogleMapInit';
+import { Map } from '../components/googleMap/Map';
+import { mapStationAndStatus } from '../shared/utils/utils';
 
 interface HomeProps {
   stations: Nullable<StationResponse>;
   statuses: Nullable<StationStatusResponse>;
 }
 export default function Home({ stations, statuses }: HomeProps): JSX.Element {
+  const [mapScriptLoaded, setMapScriptLoaded] = useState(false);
+  useEffect(() => {
+    const googleMapScript = loadMap();
+    googleMapScript.addEventListener('load', function () {
+      setMapScriptLoaded(true);
+    });
+  }, []);
+  const allInfo = mapStationAndStatus(
+    stations ? stations.data.stations : null,
+    statuses ? statuses.data?.stations : null
+  );
+
   return (
     <div className={styles.container}>
       <Head>
@@ -23,7 +38,13 @@ export default function Home({ stations, statuses }: HomeProps): JSX.Element {
         />
       </Head>
       <h1 className={styles.title}>{MAIN_HEADING}</h1>
-      <StationsSection stations={stations} statuses={statuses} />
+      {mapScriptLoaded && (
+        <Map
+          mapType={google.maps.MapTypeId.ROADMAP}
+          mapTypeControl={true}
+          stations={allInfo}
+        />
+      )}
     </div>
   );
 }
