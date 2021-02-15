@@ -33,11 +33,17 @@ export default function Home({ stations, statuses }: HomeProps): JSX.Element {
 
   const [mapScriptLoaded, setMapScriptLoaded] = useState(false);
   useEffect(() => {
-    const googleMapScript = loadMap();
-    googleMapScript.addEventListener('load', function () {
-      setMapScriptLoaded(true);
-    });
-  }, []);
+    if (!mapScriptLoaded) {
+      const googleMapScript = loadMap();
+      googleMapScript.addEventListener('load', function () {
+        setMapScriptLoaded(true);
+      });
+      if (typeof google === 'object' && typeof google.maps === 'object') {
+        setMapScriptLoaded(true);
+      }
+    }
+  }, [mapScriptLoaded]);
+
   const allInfo = mapStationAndStatus(
     stationsRes ? stationsRes.data.stations : null,
     statusRes ? statusRes.data?.stations : null
@@ -58,19 +64,9 @@ export default function Home({ stations, statuses }: HomeProps): JSX.Element {
           name="description"
           content="Dette er en tjeneste basert på Oslo Bysykkel sine sanntidsdata."
         />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        ></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <h1 className={styles.title}>{MAIN_HEADING}</h1>
-      {mapScriptLoaded && (
-        <Map
-          mapType={google.maps.MapTypeId.ROADMAP}
-          mapTypeControl={true}
-          stations={allInfo}
-        />
-      )}
+      {mapScriptLoaded && <Map mapTypeControl={true} stations={allInfo} />}
     </>
   );
 }

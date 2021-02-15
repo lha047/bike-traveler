@@ -3,7 +3,6 @@ import { StationStatusResponse } from '../shared/model/StationStatus';
 import { StationResponse } from '../shared/model/Station';
 import { Nullable } from '../shared/utils/helperTypes';
 import { GetServerSidePropsResult } from 'next';
-import styles from '../styles/Stations.module.scss';
 import { MAIN_HEADING } from '../shared/constants';
 import Head from 'next/head';
 interface StationsListPageProps {
@@ -23,12 +22,8 @@ const StationsListPage: React.FC = ({
           name="description"
           content="Dette er en tjeneste basert på Oslo Bysykkel sine sanntidsdata."
         />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        ></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <h1 className={styles.title}>{MAIN_HEADING}</h1>
       <StationsSection stations={stations} statuses={statuses} />
     </>
   );

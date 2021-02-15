@@ -1,0 +1,60 @@
+@import "styles/Variables";
+@import "./Breakpoints";
+.ul {
+  grid-area: list;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  background: $darkGreen;
+  position: absolute;
+  top: 3rem;
+  z-index: 1;
+  @include respond-to('small') {
+    top: 4.5rem;
+  }
+}
+
+.li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border: $lightGreen;
+  list-style: none;
+  &:hover {
+    background: $lightGreen;
+    color: $darkGreen;
+    .link {
+      color: $darkGreen;
+    }
+  }
+}
+.link {
+  color: $lightGreen;
+  text-decoration: none;
+}
+.active {
+  text-decoration: underline;
+}
+.button {
+  border-radius: $input-border-radius;
+  background: $darkGreen;
+  color: $lightGreen;
+  border: #034C45;
+  padding: 0;
+  margin: 0.5rem 0;
+  grid-area: menu;
+
+  @include respond-to('small') {
+    margin: 1.5rem 0;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+  }
+
+}
