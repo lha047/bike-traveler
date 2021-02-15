@@ -17,9 +17,8 @@ interface MapProps {
   mapTypeControl?: boolean;
   stations: Nullable<AllInfoStation[]>;
 }
-
-export const DEFAULT_LAT: Readonly<number> = 59.91273;
-export const DEFAULT_LNG: Readonly<number> = 10.74609;
+export const DEFAULT_LAT: Readonly<number> = 59.9266966;
+export const DEFAULT_LNG: Readonly<number> = 10.7555211;
 export const DEFAULT_ZOOM: Readonly<number> = 13;
 export const Map = ({
   mapType,
