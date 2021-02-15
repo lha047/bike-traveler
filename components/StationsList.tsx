@@ -54,7 +54,11 @@ export const StationsList = ({
                   (column: HeaderGroup<AllInfoStation>) => {
                     const { key, ...colRest } = column.getHeaderProps();
                     return (
-                      <th key={key} {...colRest}>
+                      <th
+                        key={key}
+                        {...colRest}
+                        className={`${styles[column.id]}`}
+                      >
                         {column.render('Header')}
                       </th>
                     );
@@ -73,7 +77,11 @@ export const StationsList = ({
                 {row.cells.map((cell) => {
                   const { key, ...cellRest } = cell.getCellProps();
                   return (
-                    <td key={key} {...cellRest}>
+                    <td
+                      key={key}
+                      {...cellRest}
+                      className={`${styles[cell.column.id]}`}
+                    >
                       {cell.render('Cell')}
                     </td>
                   );

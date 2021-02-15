@@ -33,3 +33,10 @@
         }
     }
 }
+.capacity,.address {
+    display: none;
+    @include respond-to('small') {
+        display: table-cell;
+    }
+
+}
