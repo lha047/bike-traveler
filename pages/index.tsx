@@ -29,7 +29,7 @@ export default function Home({ stations, statuses }: HomeProps): JSX.Element {
   );
 
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>{MAIN_HEADING}</title>
         <meta
@@ -45,7 +45,7 @@ export default function Home({ stations, statuses }: HomeProps): JSX.Element {
           stations={allInfo}
         />
       )}
-    </div>
+    </>
   );
 }
 
