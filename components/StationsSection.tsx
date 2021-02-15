@@ -9,6 +9,7 @@ import { DATE_TIME_FORMAT } from '../shared/constants';
 import { stationsTableCols } from './StationsTableCols';
 import { useStatuses } from '../hooks/useStatuses';
 import { useStations } from '../hooks/useStations';
+import styles from '../styles/StationsSection.module.scss';
 export const LOADING_TEXT: Readonly<string> =
   'Laster inn stasjonsinformasjon...';
 interface StationSectionProps {
@@ -49,10 +50,14 @@ export const StationsSection = ({
     statusRes ? statusRes.data?.stations : null
   );
   if (isLoadingStations || isLoadingStatus) {
-    return <i>{LOADING_TEXT}</i>;
+    return <i className={styles.center}>{LOADING_TEXT}</i>;
   }
   if (isStationError || isStatusError) {
-    return <i>Fant ikke stasjonsinformasjon. Vennligst prøve igjen senere.</i>;
+    return (
+      <i className={styles.center}>
+        Fant ikke stasjonsinformasjon. Vennligst prøve igjen senere.
+      </i>
+    );
   }
   const renderUpdatedInfo = (statusRes: Nullable<StationStatusResponse>) => {
     if (!statusRes) {
@@ -66,7 +71,9 @@ export const StationsSection = ({
   };
   return (
     <>
-      <p>Sist oppdatert: {renderUpdatedInfo(statusRes)}</p>
+      <p className={styles.center}>
+        Sist oppdatert: {renderUpdatedInfo(statusRes)}
+      </p>
       <StationsList stations={allInfo} columns={columns} />
     </>
   );

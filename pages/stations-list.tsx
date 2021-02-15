@@ -3,7 +3,9 @@ import { StationStatusResponse } from '../shared/model/StationStatus';
 import { StationResponse } from '../shared/model/Station';
 import { Nullable } from '../shared/utils/helperTypes';
 import { GetServerSidePropsResult } from 'next';
+import styles from '../styles/Stations.module.scss';
 import { MAIN_HEADING } from '../shared/constants';
+import Head from 'next/head';
 interface StationsListPageProps {
   stations: Nullable<StationResponse>;
   statuses: Nullable<StationStatusResponse>;
@@ -15,7 +17,18 @@ const StationsListPage: React.FC = ({
 }: StationsListPageProps) => {
   return (
     <>
-      <h1>{MAIN_HEADING}</h1>
+      <Head>
+        <title>{MAIN_HEADING}</title>
+        <meta
+          name="description"
+          content="Dette er en tjeneste basert på Oslo Bysykkel sine sanntidsdata."
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        ></meta>
+      </Head>
+      <h1 className={styles.title}>{MAIN_HEADING}</h1>
       <StationsSection stations={stations} statuses={statuses} />
     </>
   );
