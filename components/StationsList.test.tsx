@@ -32,11 +32,16 @@ describe('StationsList', () => {
   test('Interacts with search', () => {
     const search = screen.getByLabelText(SEARCH_LABEL);
     expect(search).toBeInTheDocument();
+    // search on name
     fireEvent.change(search, { target: { value: 'Sesam' } });
     expect(screen.getByText('Sesam station')).toBeInTheDocument();
     expect(screen.queryByText('Test station')).not.toBeInTheDocument();
     fireEvent.change(search, { target: { value: '' } });
     expect(screen.getByText('Sesam station')).toBeInTheDocument();
     expect(screen.getByText('test station')).toBeInTheDocument();
+    // search on address
+    fireEvent.change(search, { target: { value: 'My' } });
+    expect(screen.getByText('Sesam station')).toBeInTheDocument();
+    expect(screen.queryByText('test station')).not.toBeInTheDocument();
   });
 });
