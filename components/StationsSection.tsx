@@ -12,6 +12,8 @@ import { useStations } from '../hooks/useStations';
 import styles from '../styles/StationsSection.module.scss';
 export const LOADING_TEXT: Readonly<string> =
   'Laster inn stasjonsinformasjon...';
+export const ERROR_MESSAGE: Readonly<string> =
+  'Fant ikke stasjonsinformasjon. Vennligst prøve igjen senere.';
 interface StationSectionProps {
   stations: Nullable<StationResponse>;
   statuses: Nullable<StationStatusResponse>;
@@ -53,11 +55,7 @@ export const StationsSection = ({
     return <i className={styles.center}>{LOADING_TEXT}</i>;
   }
   if (isStationError || isStatusError) {
-    return (
-      <i className={styles.center}>
-        Fant ikke stasjonsinformasjon. Vennligst prøve igjen senere.
-      </i>
-    );
+    return <i className={styles.center}>{ERROR_MESSAGE}</i>;
   }
   const renderUpdatedInfo = (statusRes: Nullable<StationStatusResponse>) => {
     if (!statusRes) {
