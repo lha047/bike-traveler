@@ -6,16 +6,31 @@ import { GetServerSidePropsResult } from 'next';
 import { Nullable } from '../shared/utils/helperTypes';
 import { options } from '../shared/fetchHelpers';
 import { MAIN_HEADING } from '../shared/constants';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { loadMap } from '../utils/GoogleMapInit';
 import { Map } from '../components/googleMap/Map';
 import { mapStationAndStatus } from '../shared/utils/utils';
+import { useStatuses } from '../hooks/useStatuses';
+import { useStations } from '../hooks/useStations';
+import { ERROR_MESSAGE, LOADING_TEXT } from '../components/StationsSection';
 
 interface HomeProps {
   stations: Nullable<StationResponse>;
   statuses: Nullable<StationStatusResponse>;
 }
 export default function Home({ stations, statuses }: HomeProps): JSX.Element {
+  const {
+    data: statusRes,
+    isLoading: isLoadingStatus,
+    isError: isStatusError,
+  } = useStatuses(statuses);
+
+  const {
+    data: stationsRes,
+    isLoading: isLoadingStations,
+    isError: isStationError,
+  } = useStations(stations);
+
   const [mapScriptLoaded, setMapScriptLoaded] = useState(false);
   useEffect(() => {
     const googleMapScript = loadMap();
@@ -24,9 +39,16 @@ export default function Home({ stations, statuses }: HomeProps): JSX.Element {
     });
   }, []);
   const allInfo = mapStationAndStatus(
-    stations ? stations.data.stations : null,
-    statuses ? statuses.data?.stations : null
+    stationsRes ? stationsRes.data.stations : null,
+    statusRes ? statusRes.data?.stations : null
   );
+
+  if (isLoadingStations || isLoadingStatus) {
+    return <i className={styles.center}>{LOADING_TEXT}</i>;
+  }
+  if (isStationError || isStatusError) {
+    return <i className={styles.center}>{ERROR_MESSAGE}</i>;
+  }
 
   return (
     <>
