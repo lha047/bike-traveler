@@ -1,8 +1,9 @@
+@import "styles/Variables";
 .search {
     padding: 0.5rem;
     font-size: 1rem;
-    border: 2px solid black;
-    border-radius: 0.125rem;
-    margin-bottom: 0.5rem;
+    border: $border;
+    border-radius: $input-border-radius;
+    margin-bottom: $item-spacing;
     align-self: flex-start;
 }

@@ -1,11 +1,12 @@
 @import "./Breakpoints";
+@import "./Variables";
 .table {
     border: none;
     border-collapse:collapse;
     width: 100%;
     .heading {
-        font-size: 1rem;
-        border-bottom: 2px solid black;
+        font-size: $table-heading;
+        border-bottom: $border;
         th {
             text-align: left;
             &:first-child {
@@ -13,7 +14,7 @@
             }
         }
         @include respond-to('small') {
-            font-size: 1.3rem;
+            font-size: $table-heading-m;
         }
     }
     .tbody {
@@ -22,12 +23,12 @@
                 padding: 1rem;
             }
             &:hover {
-                background-color: #AEAEAE;
+                background-color: $grey;
             }
             &:nth-child(odd) {
-                    background-color: #E6E6E6;
+                    background-color: $lightGrey;
                     &:hover {
-                        background-color: #AEAEAE;
+                        background-color: $grey;
                     }       
             }
         }
