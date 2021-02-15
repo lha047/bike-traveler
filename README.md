@@ -1,4 +1,5 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+The application uses [Google Maps Api](https://developers.google.com/maps/documentation/javascript/overview) 
 
 ## Getting Started
 Install dependencies:
@@ -9,7 +10,8 @@ yarn
 ```
 
 Run the development server:
-- Add you CLIENT_IDENTIFIER to the .env file according to [Oslo Bysykkel open api](https://oslobysykkel.no/apne-data/sanntid)
+- Add you NEXT_PUBLIC_CLIENT_IDENTIFIER to the .env file according to [Oslo Bysykkel open api](https://oslobysykkel.no/apne-data/sanntid)
+- Add you Google API Key to the NEXT_PUBLIC_GOOGLE_MAPS_KEY in the .env file. See [Using API Keys](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
 ```bash
 npm run dev
