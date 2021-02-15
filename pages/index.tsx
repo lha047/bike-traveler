@@ -36,6 +36,10 @@ export default function Home({ stations, statuses }: HomeProps): JSX.Element {
           name="description"
           content="Dette er en tjeneste basert på Oslo Bysykkel sine sanntidsdata."
         />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        ></meta>
       </Head>
       <h1 className={styles.title}>{MAIN_HEADING}</h1>
       {mapScriptLoaded && (

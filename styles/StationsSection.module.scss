@@ -1,0 +1,8 @@
+@import "./Breakpoints";
+.center {
+  align-self: center;
+  margin: 0.2rem 0;
+  @include respond-to('small') {
+    margin: 1rem 0;
+  }
+}

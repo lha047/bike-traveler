@@ -1,15 +1,19 @@
+@import "./Breakpoints";
 .table {
     border: none;
     border-collapse:collapse;
-    width: 85%;
+    width: 100%;
     .heading {
-        font-size: 1.3rem;
+        font-size: 1rem;
         border-bottom: 2px solid black;
         th {
             text-align: left;
             &:first-child {
-                width: 15rem;
+                max-width: 5rem;
             }
+        }
+        @include respond-to('small') {
+            font-size: 1.3rem;
         }
     }
     .tbody {
