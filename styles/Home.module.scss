@@ -6,5 +6,10 @@
   text-align: center;
   @include respond-to('small') {
     font-size: 4rem;
+    text-align: left;
   }
+}
+.heading {
+  display: grid;
+  grid-template-areas: 'menu heading' 'list list';
 }

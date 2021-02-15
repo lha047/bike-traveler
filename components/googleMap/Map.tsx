@@ -13,7 +13,7 @@ import {
 } from '../../shared/model/GoogleHelpers';
 
 interface MapProps {
-  mapType: GoogleMapType;
+  mapType?: GoogleMapType;
   mapTypeControl?: boolean;
   stations: Nullable<AllInfoStation[]>;
 }
@@ -21,14 +21,13 @@ export const DEFAULT_LAT: Readonly<number> = 59.9266966;
 export const DEFAULT_LNG: Readonly<number> = 10.7555211;
 export const DEFAULT_ZOOM: Readonly<number> = 13;
 export const Map = ({
-  mapType,
+  mapType = google.maps.MapTypeId.ROADMAP,
   mapTypeControl,
   stations,
 }: MapProps): JSX.Element => {
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<GoogleMap>();
   const [, setMarkers] = useState<GoogleMarkerInfo[]>([]);
-
   useEffect(() => {
     if (map && stations) {
       const temp = createGoogleMarkers(map, stations);
@@ -67,7 +66,7 @@ export const Map = ({
 
   return (
     <div className={styles.container}>
-      <div ref={ref} className={styles.map}></div>
+      <div ref={ref} className={styles.map} />
     </div>
   );
 };
